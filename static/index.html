@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <style>
+        #svgelem {
+            position: relative;
+            left: 50%;
+            -webkit-transform: translateX(-40%);
+            -ms-transform: translateX(-40%);
+            transform: translateX(-40%);
+        }
+    </style>
+    <title>SVG</title>
+    <meta charset="utf-8" />
+</head>
+
+<body>
+    <h2 align="center">HTML5 SVG Gradient Ellipse</h2>
+
+    <input id="btn1" type="button" value="click me">
+
+    <svg id="svgelem" height="200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <radialGradient id="gradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                <stop offset="0%" style="stop-color:rgb(200,200,200); stop-opacity:0" />
+                <stop offset="100%" style="stop-color:rgb(0,0,255); stop-opacity:1" />
+            </radialGradient>
+        </defs>
+        <ellipse cx="100" cy="50" rx="100" ry="50" style="fill:url(#gradient)" />
+    </svg>
+
+    <!-- <img id="svg1" src="/static/1.svg"></img> -->
+    <iframe id="svg1" src="/static/1.svg" style="width: 800px; height: 600px;"></iframe>
+
+    <script>
+        // var svg_doc;
+        // document.getElementById('svg1').onload = function (evt) {
+        //     O = evt.target;
+        //     svg_doc = O.ownerDocument;
+        // }
+
+        function on_btn_click() {
+            alert('clicked ' + document.getElementById('svg1').getSVGDocument().getElementById("tspan21").firstChild.textContent)
+        }
+
+        function modify_text() {
+            // svg_doc.getElementById('tspan21').firstChild.textContent = 'random num: ' + Math.random()
+            document.getElementById('svg1').getSVGDocument().getElementById("tspan21").firstChild.textContent = 'random num: ' + Math.random()
+        }
+
+        document.getElementById('btn1').onclick = modify_text
+    </script>
+</body>
+
+</html>
