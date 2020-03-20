@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <style>
+
+    </style>
+    <title>SVG</title>
+    <meta charset="utf-8" />
+</head>
+
+<body>
+    <h2 align="center">SVG</h2>
+
+    <input id="btn1" type="button" value="click me">
+
+
+    <object id="svg1" type="image/svg+xml" data="/static/powerbi-scadavis-custom-visual-example1.svg"></object>
+
+    <script>
+
+        function on_btn_click() {
+            alert('clicked ' + document.getElementById('svg1').getSVGDocument().getElementById("tspan21").firstChild.textContent)
+        }
+
+        function modify_text() {
+            // svg_doc.getElementById('tspan21').firstChild.textContent = 'random num: ' + Math.random()
+            document.getElementById('svg1').getSVGDocument().getElementById("tspan21").firstChild.textContent = 'random num: ' + Math.random()
+        }
+
+        document.getElementById('btn1').onclick = modify_text
+    </script>
+</body>
+
+</html>
