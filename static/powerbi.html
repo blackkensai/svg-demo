@@ -20,6 +20,9 @@
     <!-- <input id="txt1" type="text" value="sample label">
     <input id="btn1" type="button" value="click me"> -->
 
+    <p>
+        Click left bottom label to get current value
+    </p>
 
     <!-- <object id="svg1" type="image/svg+xml" data="/static/powerbi-scadavis-custom-visual-example1.svg" style="width: 200px; height: 400px;"></object> -->
     <div style="width:320px; height:480px;">
@@ -28,21 +31,10 @@
 
     <script>
 
-        // function on_btn_click() {
-        //     alert('clicked ' + document.getElementById('svg1').getSVGDocument().getElementById("tspan21").firstChild.textContent)
-        // }
-
-        // function modify_text() {
-        //     // svg_doc.getElementById('tspan21').firstChild.textContent = 'random num: ' + Math.random()
-        //     document.getElementById('svg1').getSVGDocument().getElementById("tspan21").firstChild.textContent = 'random num: ' + Math.random()
-        // }
-
-        // document.getElementById('btn1').onclick = modify_text
-
         $(function () {
             var i = 0
             var svg = Snap('#svg1')
-            Snap.load('http://localhost:3000/static/powerbi-scadavis-custom-visual-example1.svg', function (data) {
+            Snap.load('/static/powerbi-scadavis-custom-visual-example1.svg', function (data) {
                 console.log('Load complete')
                 svg.group().append(data.select('g'))
                 // $('#btn1').click(function () {
@@ -55,6 +47,9 @@
                 //     // svg.select('#rect5539').attr({ height: value, fill: color })
                 //     svg.select('#rect5539').attr({ fill: color }).animate({ height: value }, 200)
                 // })
+                svg.select('#text5565').click(function () {
+                    alert(`Current value is ${svg.select('#text5543').attr('text')}`)
+                })
                 var callback = function () {
                     i++
                     var value = Math.floor(Math.random() * 500)
