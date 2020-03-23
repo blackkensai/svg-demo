@@ -35,9 +35,6 @@
             Snap.load('/static/speedometer.svg', function (data) {
                 console.log('Load complete')
                 svg.group().append(data)
-                // svg.select('#text5565').click(function () {
-                //     alert(`Current value is ${svg.select('#text5543').attr('text')}`)
-                // })
                 var last_value = 0
                 var callback = function () {
                     i++
@@ -45,28 +42,24 @@
                     var value = Math.floor(Math.random() * 120)
                     // var value = current_last_value + 20
                     last_value = value
-                    // console.log(current_last_value, last_value)
 
-                    var color = value <= 100 ? '#fbc809' : 'red'
+
                     svg.select('#text_kmh').attr({ text: (value / 0.62137119).toFixed(2) + ' km/h' })
                     svg.select('#text_mph').attr({ text: value + ' MPH' })
-                    // svg.select('#rect5539').attr({ height: value, fill: color })
-                    // svg.select('#needle').attr({ fill: color }).animate({ rotate: value }, 500)
-                    // svg.select('#needle').animate({ transform: "r-45,346,136" }, 1000)
-                    // var matrix = new Snap.Matrix();
-                    // matrix.rotate(current_last_value, 346, 136);
-                    // svg.select('#needle').attr({
-                    //     transform: matrix
-                    // });
-                    svg.select('#needle').attr({ fill: color })
+
+                    // svg.select('#needle').attr({ fill: color })
                     Snap.animate(0, 10, function (val) {
                         var matrix = new Snap.Matrix();
-                        // console.log('>>>', (value - current_last_value) * 2 / 10 * val)
-                        matrix.rotate((value - current_last_value) * 2 / 10 * val + current_last_value * 2, 346, 136);
+                        matrix.rotate(((value - current_last_value) / 10 * val + current_last_value) * 2, 346, 136)
+                        var color = '#fbc809'
+                        if (((value - current_last_value) / 10 * val + current_last_value) > 100) {
+                            color = 'red'
+                        }
                         svg.select('#needle').attr({
-                            transform: matrix
-                        });
-                    }, 500);
+                            transform: matrix,
+                            fill: color
+                        })
+                    }, 500)
                 }
                 callback()
                 setInterval(callback, 1000)
