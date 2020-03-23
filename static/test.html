@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <style>
+
+    </style>
+    <title>SVG</title>
+    <meta charset="utf-8" />
+
+    <script src="/static/jquery-3.4.1.min.js"></script>
+    <script src="/static/snap.svg-min.js"></script>
+
+    <style>
+        body {
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 align="center">SVG</h2>
+
+    <!-- <div style="width:320px; height:480px;">
+        <svg id="svg1" width="100%" height="100%" preserveAspectRatio="xMinYMin meet"></svg>
+    </div> -->
+
+    <script>
+
+        $(function () {
+            s = Snap(400, 620);
+
+            var myRect = s.rect(100, 100, 100, 200).attr({
+                fill: 'white',
+                stroke: 'black'
+            });
+            var myRotate = 45;
+
+            // if you wanted to rotate manually using your own adjust variable then this
+            // myRect.transform("r" + myRotate);
+            // but simpler in most cases to use the animate method
+
+            // myRect.rotate(45, 150, 200)
+            var matrix = new Snap.Matrix();
+            // matrix.rotate(-40, 150, 200);
+            // console.log(myRect.attr())
+            // myRect.attr({ transform: matrix })
+            // myRect.animate({ transform: matrix }, 1000); //rotate around centre of 150,200
+            Snap.animate(0, 10, function (val) {
+                var matrix = new Snap.Matrix();
+                matrix.rotate(18 * val, 150, 200);
+                myRect.attr({
+                    transform: matrix
+                });
+            }, 1000);
+        })
+    </script>
+</body>
+
+</html>
